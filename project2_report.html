@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Project 2 Report</title>
+    <style>
+      :root {
+        --color-neutral-95: hsl(220 10% 95%);
+        --color-neutral-90: hsl(220 10% 90%);
+        --color-neutral-80: hsl(220 10% 80%);
+        --color-neutral-70: hsl(220 10% 70%);
+        --color-neutral-60: hsl(220 10% 60%);
+        --color-neutral-50: hsl(220 10% 50%);
+        --color-neutral-40: hsl(220 10% 40%);
+        --color-neutral-30: hsl(220 10% 30%);
+        --color-neutral-20: hsl(220 10% 20%);
+        --color-neutral-10: hsl(220 10% 10%);
+      }
+
+      html {
+        font: 100%/1.5 system-ui;
+        counter-reset: figure;
+        background: var(--color-neutral-95);
+        max-width: min(75vw, 80em);
+        margin: 0 auto;
+      }
+
+      /* Headings */
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        line-height: 1.1;
+        font-weight: 600;
+        text-wrap: balance;
+      }
+
+      h1,
+      h2 {
+        border-bottom: 1px solid var(--color-neutral-80);
+        padding-bottom: 0.2em;
+      }
+
+      h1 {
+        margin-block: 1em 0.5rem;
+        font-size: clamp(2.5em, 150% + 2vh + 2vw, 10vmin);
+        font-weight: 800;
+
+        small {
+          display: block;
+          width: fit-content;
+          padding: 0.2em 0.5em;
+          margin-inline: auto;
+          color: white;
+          background: var(--color-neutral-40);
+          font-size: 40%;
+          text-transform: uppercase;
+          white-space: nowrap;
+        }
+      }
+
+      h2 {
+        font-size: 180%;
+        color: var(--color-neutral-30);
+      }
+
+      h3 {
+        font-size: 130%;
+      }
+
+      /* Lists */
+
+      ul,
+      ol {
+        padding-inline-start: 2em;
+      }
+
+      li {
+        &::marker {
+          color: var(--color-neutral-40);
+        }
+
+        + li {
+          margin-top: 0.2em;
+        }
+      }
+
+      /* Sectioning elements */
+
+      header {
+        padding-block: 1em;
+        text-align: center;
+      }
+
+      main {
+        background: white;
+        color: var(--color-neutral-20);
+        border-radius: 1rem;
+        padding: 0.1rem 2rem;
+      }
+
+      /* Figures */
+
+      figure {
+        margin: 1em 0;
+        padding: 0.5rem;
+        margin-inline: -0.5em;
+        border: 1px solid var(--color-neutral-80);
+        box-shadow: 0 0.1em 0.2em var(--color-neutral-95);
+        text-align: center;
+        background: white;
+
+        > figcaption {
+          font: 500 75% var(--font-sans);
+          background: var(--color-neutral-95);
+          padding: 0.5rem;
+          margin: -0.5rem;
+          margin-top: 0.5rem;
+          counter-increment: figure;
+          text-align: left;
+
+          &::before {
+            content: 'Figure ' counter(figure) ': ';
+            font-weight: bold;
+            color: var(--color-neutral-40);
+          }
+
+          a:not(:hover, :focus, :active) {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-color: color-mix(
+              in lab,
+              currentColor,
+              transparent 70%
+            );
+          }
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>
+        <small>Project 2</small>
+        Persuasive or Deceptive Visualization?
+      </h1>
+      <p><strong>Tony Bai</strong> — <em>zhbai@ucsd.edu</em></p>
+      <p><strong>Ricky Zhang</strong> — <em>riz004@ucsd.edu</em></p>
+      <p><strong>Dhruv Sehgal</strong> — <em>dsehgal@ucsd.edu</em></p>
+    </header>
+
+    <main>
+      <h2>Proposition: Police misconduct disproportionately affects Black and Hispanic people</h2>
+
+      <section>
+        <h3>FOR the Proposition</h3>
+
+        <figure>
+          <img src="for_final_number.png" alt="Population Count versus Race for Brooklyn and Queens precincts. Black people have the highest number of complaints."/>
+          <figcaption>There is a disproportionate amount of complaints by black people.</figcaption>
+        </figure>
+
+        <p>Design Decisions and Rationale:</p>
+
+        <ul>
+          <li><b>Use of Absolute Units:</b> SCORE: -1</li>
+          <p>
+            By using absolute units, we effectively insinuate the two precincts are comparable in size. In reality, when looking at the overall population comparing Brooklyn and Queens, we see there is roughly 0.3 million count difference (per 2023 United States Census Bureau). In this graph, it becomes incredibly clear that Black population files the most complaints. For readers, it suggests that racism towards Black is the prevalent issue, thus potentially disregarding the needs for other ethnic communities. We considered relative units, however, it would show both Black and Hispanics make up the highest complainants in Brooklyn and Queens respectively. Thus, it would lessen the attention grab and potentially challenge readers’ world view.
+          </p>
+          <li><b>Exclusion of Unknown Ethnicity:</b> SCORE: -2</li>
+          <p>
+            To further sell the idea of “one race victim”, we intentionally dropped complainant data that had either been labeled as refused, unknown, or not applicable. To be exact, in total there were around 19% and 14% of data from the Brooklyn and Queens borough precincts respectively dropped from the original dataset. At first, this may seem logical as no logical assumptions can be made without knowing their ethnicity. However, when taking history and culture into consideration, the unknown may shift the bars and reveal greater complaints from other ethnicities. For instance, some Asians, preferring low profile, may fear being harassed or bring potential retaliation to family and friends. The alternative of including the unknown ethnicity would bring ambiguity and question into the visualization. If a great amount of data was unknown, readers may suspect how the reality may differ if all ethnicities were provided.
+          </p>
+          <li><b>Intentional Subsetting of Boroughs:</b> SCORE: -1</li>
+          <p>
+            For this visualization, we chose precincts in Brooklyn and Queens as they are the most populated boroughs in New York. With a greater population to work with, we can spot the finer details, such as prevailing signs of targeted racism. The alternative would be either to look at the data as a whole or choose to select boroughs by other defining traits, such as poverty level. That said, looking at the data as a whole does support the idea that Blacks file the most complaints. However, this approach is both simplistic and easily questioned. Readers may criticize how this review disregards the population differences in different districts. By focusing on two of the densest populations, it becomes harder for non-native readers to distinguish the specific size and structural difference present in the selected boroughs. On another note, by looking at boroughs with other defining traits, it becomes harder to use number of complaints to sell the narrative of “one race victim”.
+          </p>
+        </ul>
+      </section>
+
+      <section>
+        <h3>AGAINST the Proposition</h3>
+
+        <figure>
+          <img src="against_final.png" alt="Population percentage in Bronx versus Race."/>
+          <figcaption>Proportion of complaints by each race roughly matches the demographics.</figcaption>
+        </figure>
+
+        <p>Design Decisions and Rationale:</p>
+
+        <ul>
+          <li><b>Exclusive use of Bronx borough:</b> SCORE: -1.5</li>
+          <p>
+            The percentage of complainant race vs. census data was the most similar in the Bronx. By exclusively using data from Bronx in this visualization it makes the argument against police misconduct more compelling even though the percentages tell a completely different story in New York as a whole and other boroughs.
+
+We wanted to implement cherry picking as a deceptive technique so cherry picking data by borough was an obvious choice. When we looked at complainant race percentages in different boroughs compared to the census data in different boroughs Bronx looked the most similar. In addition, the Bronx has a higher poverty rate compared to the other boroughs, which will help with skewing the data to match the complainant race percentages. Although after plotting the percentages on a graph there was still a significant enough difference so it did not work as well as we thought it would and we needed to supplement another deceptive technique.
+          </p>
+          <li><b>Use of logarithmic y-axis:</b> SCORE: -2</li>
+          <p>
+            The use of logarithmic scale makes the complainant percentages and census percentages seem more comparable even though the actual percentages are not as close (complainant percentages being 55% vs. census percentages being 28.6% for Black people). Making the percentages seem more comparable makes the argument against police misconduct affecting Black people more seem less truthful. 
+
+We have considered truncating the y-axis to try and achieve the same effect, but it would make the columns for the White, Asian, and other races seem disproportionately smaller compared to the columns for Black and Hispanic. The percentages for White, Asian, and other races are too small (the biggest being 9% from White) compared to Blacks and Hispanics (the smallest being 28.6% from Black). If we went with truncated y-axis it would have been more apparent that we have done something with the y-axis compared to using logarithmic y-axis.
+          </p>
+          <li><b>Use of 2020 New York Census Data:</b> SCORE: -1</li>
+          <p>
+            Using only one year of census data is slightly deceptive because the dataset contains complaint data from 1985-2020, not just 2020. Even more so considering the fact that the dataset only contains data from January of 2020, not the entire year. The demographic from 1985 is vastly different compared to 2020 so it is dishonest to compare data from 1985-2020 to just 2020. 
+
+Using census data gave us something to compare the complainant race percentage to, which helped with arguing against police misconduct disproportionately affecting Black people. We decided on using 2020 because it was the last year the dataset covered, and we thought it would work fine for the proposition we are arguing against since it would have a higher percentage of Black people, helping with our case that the complainant race percentage is similar to census data.
+          </p>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Final Reflection</h2>
+
+        <p>Overall, this was quite an interesting project to work on, and an eye-opening experience into high just slight changes can make visualizations depict totally different inferences. Starting from the checkpoint, we noticed how easily complaints data changed depending on the variables. Since race and police misconduct is already a well-debated topic, we went with this one to highlight how media outlets often fine-tunes their visualizations to support the beliefs of their target audiences. Most of the design process from there on involved filtering the dataset to get specific outputs, such as only looking at certain precincts and dropping some rows which, depending on what we're looking for, would be considered 'irrelevant'. However, it should be noted that something being 'irrelevant' during one process may very well be super important during another.</p>
+        <p>Since race and police misconduct is already a well-debated topic, finding a starting point of what we want to show was straightforward. However, actually getting these results took extensive exploratory data analysis. Many times dropping or filtering rows would help our case, but the other variables would be too off to not seem deceptive. While it was somewhat expected, we did not expect to get a visualization as good when just looking at the most populated precints instead of New York as a whole.</p>
+        <p>"Ethical data analysis" may seem a simple concept at first, but it is actually quite tough to do so, as highlighted from our visualizations. A lot of factors come into play: confirmation bias, selection bias, historical data being skewed because of confirmation and selection bias of people who created the dataset, and so on. Hence, we would define it as looking at all sides of the story - having multiple propositions motivated us to take multiple 'paths' during EDA, leading to different inferences. Adding that to ethical visualizations, firstly, it is important to consider all good visualization practices we covered in lecture (and the ones we did not follow during deception). Even the exact same data can lead to different inferences depending on how it is presented. Of course, changing axis scales, using logarithmic scales to make quantities look similar, using double-axes on the same graph, truncating axes, etc. are  clearly misleading. However, it is not always clear as depending on the inference we are trying to make, our visualization might be unintentionally skewed. For example, in our "Against" visualization, selecting only 2020 could be considered a good choice to make sure we're only looking at newer data, but this could skew our results since police strictness and misconduct could be affected by the current politicians in-charge, meaning other terms with others in-charge also need to be taken into consideration, even if from the newer era. The line between deceptive and earnest hence is often blurred.</p>
+      </section>
+    </main>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"c822b88e119346678db149ed7b7721c9","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
